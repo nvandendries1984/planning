@@ -1,0 +1,19 @@
+columns:
+    naam:
+        label: naam
+        type: text
+        searchable: true
+        sortable: true
+    locatie:
+        label: locatie
+        type: text
+        searchable: true
+        sortable: true
+    aanvang:
+        label: aanvang
+        type: text
+        sortable: false
+    einde:
+        label: einde
+        type: text
+        sortable: false

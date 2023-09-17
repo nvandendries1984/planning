@@ -1,0 +1,17 @@
+fields:
+    naam:
+        label: Naam
+        span: auto
+        type: text
+    locatie:
+        label: Locatie
+        span: auto
+        type: text
+    aanvang:
+        label: Aanvang
+        span: auto
+        type: datepicker
+    einde:
+        label: Einde
+        span: auto
+        type: datepicker

@@ -1,0 +1,24 @@
+plugin:
+    name: 'nielsvandendries.planning::lang.plugin.name'
+    description: 'nielsvandendries.planning::lang.plugin.description'
+    author: 'Niels van den Dries'
+    icon: oc-icon-calendar
+    homepage: 'https://nvandendries.nl'
+permissions:
+    manager:
+        tab: 'nielsvandendries.planning::lang.plugin.name'
+        label: 'Planning manager'
+navigation:
+    main-menu-item-planning:
+        label: 'nielsvandendries.planning::lang.plugin.name'
+        url: /
+        icon: icon-calendar
+        permissions:
+            - manager
+        sideMenu:
+            side-menu-item-klussen:
+                label: 'Agenda Items'
+                url: nielsvandendries/planning/agendaitems
+                icon: icon-star
+                permissions:
+                    - manager

@@ -1,0 +1,8 @@
+v1.0.1:
+    - 'Initialize plugin'
+v1.0.2:
+    - 'Created table nielsvandendries_planning_klussen'
+    - builder_table_create_nielsvandendries_planning_klussen.php
+v1.0.3:
+    - 'Updated table nielsvandendries_planning_klussen'
+    - builder_table_update_nielsvandendries_planning_klussen.php

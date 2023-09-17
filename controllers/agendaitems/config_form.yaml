@@ -1,0 +1,11 @@
+name: AgendaItems
+modelClass: NielsVanDenDries\Planning\Models\Klussen
+form: $/nielsvandendries/planning/models/klussen/fields.yaml
+defaultRedirect: nielsvandendries/planning/agendaitems
+create:
+    redirect: 'nielsvandendries/planning/agendaitems/update/:id'
+    redirectClose: nielsvandendries/planning/agendaitems
+update:
+    redirect: nielsvandendries/planning/agendaitems
+    redirectClose: nielsvandendries/planning/agendaitems
+preview: {  }
