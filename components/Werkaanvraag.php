@@ -1,12 +1,10 @@
 <?php namespace Nielsvandendries\Planning\Components;
 
 use Cms\Classes\ComponentBase;
+use Auth;
+use RainLab\User\Models\User;
+use Nielsvandendries\Planning\Models\Klussen;
 
-/**
- * Werkaanvraag Component
- *
- * @link https://docs.octobercms.com/3.x/extend/cms-components.html
- */
 class Werkaanvraag extends ComponentBase
 {
     public function componentDetails()
@@ -17,26 +15,47 @@ class Werkaanvraag extends ComponentBase
         ];
     }
 
-    /**
-     * @link https://docs.octobercms.com/3.x/element/inspector-types.html
-     */
     public function defineProperties()
     {
         return [];
     }
 
-    public function getEventOptions()
+    public function onRun()
     {
-        // Haal de evenementen op uit je "planning" plugin
-        $events = \Plugin\Planning\Models\Evenement::all();
-    
-        $options = [];
-    
-        foreach ($events as $event) {
-            $options[$event->id] = $event->naam; // Pas dit aan op basis van je evenementmodel
+        // Controleren of de gebruiker is ingelogd
+        if (!Auth::check()) {
+            // Toon een bericht dat de gebruiker moet inloggen
+            $this->page['message'] = 'Log in om de klussen te zien.';
+            return;
         }
-    
-        return $options;
+
+        // Klussen ophalen en doorgeven aan de Twig-template
+        $user = Auth::getUser();
+        $this->page['klussen'] = Klussen::all();
+        $this->page['user'] = $user;
     }
-    
+
+    public function onSaveChoices()
+    {
+        // Controleren of de gebruiker is ingelogd
+        if (!Auth::check()) {
+            // Geen toegang tot opslaan als de gebruiker niet is ingelogd
+            return Redirect::to('/login'); // Redirect naar de inlogpagina
+        }
+
+        // Gegevens ophalen uit het POST-verzoek
+        $user = Auth::getUser();
+        $choices = post('keuze');
+
+        // Loop door de keuzes en sla ze op in de database
+        foreach ($choices as $klusId => $keuze) {
+            // Hier moet je code toevoegen om de keuze van de gebruiker op te slaan in de database,
+            // bijvoorbeeld in een aangepaste tabel die de relatie tussen gebruikers en klussen beheert.
+            // Je kunt Eloquent-models gebruiken om dit te doen.
+        }
+
+        // Stuur een bevestigingsbericht of redirect naar een bedankpagina
+        Flash::success('Je keuzes zijn opgeslagen.');
+        return Redirect::back();
+    }
 }

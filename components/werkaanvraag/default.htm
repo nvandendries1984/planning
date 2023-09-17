@@ -1,3 +1,18 @@
-<p>This is the default markup for component Werkaanvraag</p>
-
-<small>You can delete this file if you want</small>
+<form method="post" data-request="onSaveChoices">
+    <ul>
+        {% for klus in klussen %}
+            <li>
+                {{ klus.naam }}
+                <label>
+                    <input type="radio" name="keuze[{{ klus.id }}]" value="ja" {% if user.kanWerkenOp(klus.id) == 'ja' %}checked{% endif %}>
+                    Ik kan wel
+                </label>
+                <label>
+                    <input type="radio" name="keuze[{{ klus.id }}]" value="nee" {% if user.kanWerkenOp(klus.id) == 'nee' %}checked{% endif %}>
+                    Ik kan niet
+                </label>
+            </li>
+        {% endfor %}
+    </ul>
+    <button type="submit">Opslaan</button>
+</form>
